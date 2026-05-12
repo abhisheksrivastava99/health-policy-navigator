@@ -1,0 +1,16 @@
+Unnamed: 0,Unnamed: 1,Unnamed: 2,Unnamed: 3
+Benefits,MediShield Life,[Income] IncomeShield Plan C *,[Income] Enhanced IncomeShield C *
+Inpatient and Day Surgery:,,,
+Daily Ward and Treatment Charges,,,
+- Normal Ward [Note (7)],800/day*,700/day,As Charged
+- Intensive Care Unit Ward,"2,200/day*","1,200/day",As Charged
+,* An additional claim limit of $200 per day applies for the first two inpatient days,,
+- Psychiatric,160/day (up to 60 days per policy yr),"7,000/yr","7,000/yr"
+- Community Hospital (Rehabilitative),350/day,550/day (up to 45 days for each admission),As charged (up to 45 days for each admission)
+- Community Hospital (Sub-acute),430/day,,
+- Inpatient Palliative Care Service (General),460/day,-,As Charged
+- Inpatient Palliative Care Service (Specialised),500/day,-,As Charged
+Surgical Procedures,"240 - 2,600","400 - 6,800",As Charged
+Implants,"7,000/treatment",7000/admission,As Charged
+"Radiosurgery, including Proton Beam Therapy - Category 4 [Note (6)]","10,000/treatment course","9,600/treatment course",As Charged
+Continuation of Autologous Bone Marrow Transplant Treatment for Multiple Myeloma [Note (5)],"6,000/treatment",-,"10,000/yr"

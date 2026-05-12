@@ -1,0 +1,40 @@
+plan_id,tier_code,tier_slug,tier_label,insurer_name,product_name,display_name,is_baseline,baseline_type,has_benefits,has_premium_data
+basic__medishield_life,basic,basic,Basic Plans,,MediShield Life,MediShield Life,True,medishield_life,True,True
+basic__income__incomeshield_plan_c,basic,basic,Basic Plans,Income,IncomeShield Plan C *,[Income] IncomeShield Plan C *,False,,True,True
+basic__income__enhanced_incomeshield_c,basic,basic,Basic Plans,Income,Enhanced IncomeShield C *,[Income] Enhanced IncomeShield C *,False,,True,True
+standard__standard_ip,standard,standard_integrated_shield_plans,Standard Integrated Shield Plans,,Standard IP,Standard IP,True,standard_ip,True,False
+standard__income__incomeshield_standard_plan,standard,standard_integrated_shield_plans,Standard Integrated Shield Plans,Income,IncomeShield Standard Plan,[Income] IncomeShield Standard Plan,False,,False,True
+standard__aia__healthshield_gold_max_standard_plan,standard,standard_integrated_shield_plans,Standard Integrated Shield Plans,AIA,HealthShield Gold Max Standard Plan,[AIA] HealthShield Gold Max Standard Plan,False,,False,True
+standard__great_eastern__great_supremehealth_standard,standard,standard_integrated_shield_plans,Standard Integrated Shield Plans,Great Eastern,GREAT SupremeHealth STANDARD,[Great Eastern] GREAT SupremeHealth STANDARD,False,,False,True
+standard__prudential__prushield_standard_plan,standard,standard_integrated_shield_plans,Standard Integrated Shield Plans,Prudential,PRUShield Standard Plan,[Prudential] PRUShield Standard Plan,False,,False,True
+standard__singlife__singlife_shield_standard_plan,standard,standard_integrated_shield_plans,Standard Integrated Shield Plans,Singlife,Singlife Shield Standard Plan,[Singlife] Singlife Shield Standard Plan,False,,False,True
+standard__hsbc_life__hsbc_life_shield_standard_plan,standard,standard_integrated_shield_plans,Standard Integrated Shield Plans,HSBC Life,HSBC Life Shield Standard Plan,[HSBC Life] HSBC Life Shield Standard Plan,False,,False,True
+standard__raffles_health_insurance__raffles_shield_standard_plan,standard,standard_integrated_shield_plans,Standard Integrated Shield Plans,Raffles Health Insurance,Raffles Shield Standard Plan,[Raffles Health Insurance] Raffles Shield Standard Plan,False,,False,True
+class_b1__income__incomeshield_plan_b,class_b1,class_b1_plans,Class B1 Plans,Income,IncomeShield Plan B*,[Income] IncomeShield Plan B*,False,,True,True
+class_b1__income__enhanced_incomeshield_basic,class_b1,class_b1_plans,Class B1 Plans,Income,Enhanced IncomeShield Basic,[Income] Enhanced IncomeShield Basic,False,,True,True
+class_b1__aia__healthshield_gold_max_c,class_b1,class_b1_plans,Class B1 Plans,AIA,HealthShield Gold Max C*,[AIA] HealthShield Gold Max C*,False,,True,True
+class_b1__aia__healthshield_gold_max_b_lite,class_b1,class_b1_plans,Class B1 Plans,AIA,HealthShield Gold Max B Lite,[AIA] HealthShield Gold Max B Lite,False,,True,True
+class_b1__great_eastern__great_supremehealth_b,class_b1,class_b1_plans,Class B1 Plans,Great Eastern,GREAT SupremeHealth B*,[Great Eastern] GREAT SupremeHealth B*,False,,True,True
+class_b1__great_eastern__great_supremehealth_b_plus,class_b1,class_b1_plans,Class B1 Plans,Great Eastern,GREAT SupremeHealth B PLUS,[Great Eastern] GREAT SupremeHealth B PLUS,False,,True,True
+class_b1__prudential__prushield_b,class_b1,class_b1_plans,Class B1 Plans,Prudential,PRUShield B*,[Prudential] PRUShield B*,False,,True,True
+class_b1__singlife__singlife_shield_plan_3,class_b1,class_b1_plans,Class B1 Plans,Singlife,Singlife Shield Plan 3,[Singlife] Singlife Shield Plan 3,False,,True,True
+class_b1__raffles_health_insurance__raffles_shield_b,class_b1,class_b1_plans,Class B1 Plans,Raffles Health Insurance,Raffles Shield B,[Raffles Health Insurance] Raffles Shield B,False,,True,True
+class_a__income__incomeshield_plan_a,class_a,class_a_plans,Class A Plans,Income,IncomeShield Plan A*,[Income] IncomeShield Plan A*,False,,True,True
+class_a__income__enhanced_incomeshield_advantage,class_a,class_a_plans,Class A Plans,Income,Enhanced IncomeShield Advantage,[Income] Enhanced IncomeShield Advantage,False,,True,True
+class_a__aia__healthshield_gold_max_b,class_a,class_a_plans,Class A Plans,AIA,HealthShield Gold Max B,[AIA] HealthShield Gold Max B,False,,True,True
+class_a__great_eastern__great_supremehealth_a_plus,class_a,class_a_plans,Class A Plans,Great Eastern,GREAT SupremeHealth A PLUS,[Great Eastern] GREAT SupremeHealth A PLUS,False,,True,True
+class_a__prudential__prushield_a,class_a,class_a_plans,Class A Plans,Prudential,PRUShield A*,[Prudential] PRUShield A*,False,,True,True
+class_a__prudential__prushield_plus,class_a,class_a_plans,Class A Plans,Prudential,PRUShield Plus,[Prudential] PRUShield Plus,False,,True,True
+class_a__singlife__singlife_shield_plan_2,class_a,class_a_plans,Class A Plans,Singlife,Singlife Shield Plan 2,[Singlife] Singlife Shield Plan 2,False,,True,True
+class_a__hsbc_life__hsbc_life_shield_plan_b,class_a,class_a_plans,Class A Plans,HSBC Life,HSBC Life Shield Plan B,[HSBC Life] HSBC Life Shield Plan B,False,,True,True
+class_a__raffles_health_insurance__raffles_shield_a,class_a,class_a_plans,Class A Plans,Raffles Health Insurance,Raffles Shield A,[Raffles Health Insurance] Raffles Shield A,False,,True,True
+private__income__incomeshield_plan_p,private,private_hospital_plans,Private Hospital Plans,Income,IncomeShield Plan P*,[Income] IncomeShield Plan P*,False,,True,True
+private__income__enhanced_incomeshield_preferred,private,private_hospital_plans,Private Hospital Plans,Income,Enhanced IncomeShield Preferred,[Income] Enhanced IncomeShield Preferred,False,,True,True
+private__aia__healthshield_gold_max_a,private,private_hospital_plans,Private Hospital Plans,AIA,HealthShield Gold Max A,[AIA] HealthShield Gold Max A,False,,True,True
+private__great_eastern__great_supremehealth_a,private,private_hospital_plans,Private Hospital Plans,Great Eastern,GREAT SupremeHealth A*,[Great Eastern] GREAT SupremeHealth A*,False,,True,True
+private__great_eastern__great_supremehealth_p_plus,private,private_hospital_plans,Private Hospital Plans,Great Eastern,GREAT SupremeHealth P PLUS,[Great Eastern] GREAT SupremeHealth P PLUS,False,,True,True
+private__prudential__prushield_premier,private,private_hospital_plans,Private Hospital Plans,Prudential,PRUShield Premier,[Prudential] PRUShield Premier,False,,True,True
+private__singlife__singlife_shield_plan_1,private,private_hospital_plans,Private Hospital Plans,Singlife,Singlife Shield Plan 1,[Singlife] Singlife Shield Plan 1,False,,True,True
+private__singlife__singlife_shield_starter,private,private_hospital_plans,Private Hospital Plans,Singlife,Singlife Shield Starter,[Singlife] Singlife Shield Starter,False,,True,True
+private__hsbc_life__hsbc_life_shield_plan_a,private,private_hospital_plans,Private Hospital Plans,HSBC Life,HSBC Life Shield Plan A,[HSBC Life] HSBC Life Shield Plan A,False,,True,True
+private__raffles_health_insurance__raffles_shield_private,private,private_hospital_plans,Private Hospital Plans,Raffles Health Insurance,Raffles Shield Private,[Raffles Health Insurance] Raffles Shield Private,False,,True,True

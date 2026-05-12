@@ -1,0 +1,4 @@
+age_start,age_end,max_withdrawal_limit
+1,40,300
+41,70,600
+71,120,900

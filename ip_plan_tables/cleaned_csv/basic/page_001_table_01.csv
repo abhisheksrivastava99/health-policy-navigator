@@ -1,0 +1,12 @@
+section,benefit,notes,MediShield Life,[Income] IncomeShield Plan C *,[Income] Enhanced IncomeShield C *,source_pdf,source_slug,source_page,source_table,repair_flags
+Inpatient and Day Surgery: | Daily Ward and Treatment Charges,- Normal Ward [Note (7)],,800/day*,700/day,As Charged,01_basic.pdf,basic,1,1,
+Inpatient and Day Surgery: | Daily Ward and Treatment Charges,- Intensive Care Unit Ward,* An additional claim limit of $200 per day applies for the first two inpatient days,"2,200/day*","1,200/day",As Charged,01_basic.pdf,basic,1,1,attached_note_row
+Inpatient and Day Surgery: | Daily Ward and Treatment Charges,- Psychiatric,,160/day (up to 60 days per policy yr),"7,000/yr","7,000/yr",01_basic.pdf,basic,1,1,
+Inpatient and Day Surgery: | Daily Ward and Treatment Charges,- Community Hospital (Rehabilitative),,350/day,550/day (up to 45 days for each admission),As charged (up to 45 days for each admission),01_basic.pdf,basic,1,1,
+Inpatient and Day Surgery: | Daily Ward and Treatment Charges,- Community Hospital (Sub-acute),,430/day,550/day (up to 45 days for each admission),As charged (up to 45 days for each admission),01_basic.pdf,basic,1,1,override_fill_from_previous:[Income] IncomeShield Plan C *|override_fill_from_previous:[Income] Enhanced IncomeShield C *
+Inpatient and Day Surgery: | Daily Ward and Treatment Charges,- Inpatient Palliative Care Service (General),,460/day,-,As Charged,01_basic.pdf,basic,1,1,
+Inpatient and Day Surgery: | Daily Ward and Treatment Charges,- Inpatient Palliative Care Service (Specialised),,500/day,-,As Charged,01_basic.pdf,basic,1,1,
+Inpatient and Day Surgery: | Daily Ward and Treatment Charges,Surgical Procedures,,"240 - 2,600","400 - 6,800",As Charged,01_basic.pdf,basic,1,1,
+Inpatient and Day Surgery: | Daily Ward and Treatment Charges,Implants,,"7,000/treatment",7000/admission,As Charged,01_basic.pdf,basic,1,1,
+Inpatient and Day Surgery: | Daily Ward and Treatment Charges,"Radiosurgery, including Proton Beam Therapy - Category 4 [Note (6)]",,"10,000/treatment course","9,600/treatment course",As Charged,01_basic.pdf,basic,1,1,
+Inpatient and Day Surgery: | Daily Ward and Treatment Charges,Continuation of Autologous Bone Marrow Transplant Treatment for Multiple Myeloma [Note (5)],,"6,000/treatment",-,"10,000/yr",01_basic.pdf,basic,1,1,

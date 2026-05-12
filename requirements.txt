@@ -1,0 +1,11 @@
+streamlit
+pandas
+plotly
+fastapi
+uvicorn
+langgraph
+langchain-openai
+python-dotenv
+pydantic
+rapidfuzz
+requests
