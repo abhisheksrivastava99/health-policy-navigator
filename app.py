@@ -21,8 +21,31 @@ STANDARD_BASELINE_PLAN_ID = "standard__standard_ip"
 
 load_dotenv(ENV_PATH)
 
-API_BASE_URL = os.getenv("API_BASE_URL", DEFAULT_API_BASE_URL).rstrip("/")
-SHOW_DEBUG_PAYLOADS = os.getenv("SHOW_DEBUG_PAYLOADS", "").strip().lower() in {"1", "true", "yes", "on"}
+
+def _streamlit_secret_value(key: str) -> Optional[str]:
+    try:
+        if key in st.secrets:
+            value = st.secrets[key]
+            return value if isinstance(value, str) else str(value)
+    except Exception:
+        return None
+    return None
+
+
+def _setting_value(key: str, default: str = "") -> str:
+    env_value = os.getenv(key, "").strip()
+    if env_value:
+        return env_value
+
+    secret_value = _streamlit_secret_value(key)
+    if secret_value:
+        return secret_value.strip()
+
+    return default
+
+
+API_BASE_URL = _setting_value("API_BASE_URL", DEFAULT_API_BASE_URL).rstrip("/")
+SHOW_DEBUG_PAYLOADS = _setting_value("SHOW_DEBUG_PAYLOADS", "").lower() in {"1", "true", "yes", "on"}
 
 EXAMPLE_PROMPTS = [
     "I am 45, how much cash do I pay for Prudential Class A?",

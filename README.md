@@ -51,9 +51,18 @@ python3 -m streamlit run app.py
 - `OPENAI_MODEL`
 - `SHOW_DEBUG_PAYLOADS` optional, defaults to off
 
+For Streamlit Community Cloud, the app can read these values from either:
+
+- root-level secrets in `st.secrets`
+- environment variables exposed from those root-level secrets
+
+An example file is included at [.streamlit/secrets.toml.example](./.streamlit/secrets.toml.example).
+
 ## Deploy Backend To Render
 
 This repo includes a `render.yaml` blueprint for the FastAPI backend.
+
+Render will detect the Python version from [.python-version](./.python-version). This repo pins Python `3.12` so the backend is aligned with the Streamlit deployment target.
 
 Manual service settings if you prefer entering them in the Render UI:
 
@@ -70,6 +79,12 @@ pip install -r requirements.txt
 
 ```bash
 python3 -m uvicorn main:app --host 0.0.0.0 --port $PORT
+```
+
+- Health check path:
+
+```bash
+/health
 ```
 
 Set these Render environment variables:
@@ -89,14 +104,24 @@ Use the same GitHub repo and choose:
 
 - Main file path: `app.py`
 - Python dependencies: `requirements.txt`
+- Python version in Advanced settings: `3.12`
 
-Set these Streamlit secrets or environment values:
+In Advanced settings, paste the contents of a secrets file shaped like [.streamlit/secrets.toml.example](./.streamlit/secrets.toml.example).
+
+Set these root-level Streamlit secrets:
 
 - `API_BASE_URL=https://<your-render-service>`
 - `OPENAI_API_KEY`
 - `OPENAI_MODEL=gpt-4o-mini`
+- `SHOW_DEBUG_PAYLOADS=false`
 
 Leave `SHOW_DEBUG_PAYLOADS` unset unless you intentionally want raw payload panels visible.
+
+## Live Repository
+
+GitHub repository:
+
+- [abhisheksrivastava99/health-policy-navigator](https://github.com/abhisheksrivastava99/health-policy-navigator)
 
 ## Deployment Verification
 
