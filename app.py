@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import time
 from html import escape
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
@@ -94,6 +95,8 @@ SESSION_DEFAULTS = {
     "benefit_insurer": "",
     "benefit_plan_selection": "__auto__",
     "benefit_keyword": "",
+    "backend_refresh_notice": "",
+    "backend_refresh_notice_level": "info",
 }
 
 APP_STYLES = """
@@ -284,19 +287,67 @@ h1, h2, h3, h4 {
 .sidebar-card {
   padding: 1rem;
   margin-bottom: 0.8rem;
+  background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(243,248,253,0.98) 100%);
+  border-color: rgba(17, 35, 58, 0.14);
 }
 
 .sidebar-label {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: rgba(24, 49, 58, 0.56);
+  color: rgba(17, 35, 58, 0.72);
+  font-weight: 700;
 }
 
 .sidebar-value {
   margin-top: 0.22rem;
   font-size: 1rem;
   font-weight: 600;
+  color: var(--ink);
+  line-height: 1.45;
+}
+
+.sidebar-value code {
+  display: inline-block;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  background: rgba(28, 95, 130, 0.10);
+  color: var(--teal-deep);
+  border: 1px solid rgba(28, 95, 130, 0.12);
+  padding: 0.3rem 0.45rem;
+}
+
+.sidebar-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.22rem;
+  padding: 0.4rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  border: 1px solid rgba(17, 35, 58, 0.12);
+}
+
+.sidebar-status.online {
+  background: rgba(28, 95, 130, 0.12);
+  border-color: rgba(28, 95, 130, 0.20);
+  color: var(--teal-deep);
+}
+
+.sidebar-status.offline {
+  background: rgba(155, 79, 63, 0.10);
+  border-color: rgba(155, 79, 63, 0.18);
+  color: var(--danger);
+}
+
+.sidebar-note {
+  margin-top: 0.8rem;
+  font-size: 0.87rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
 }
 
 .panel-card {
@@ -666,6 +717,22 @@ def _api_url(path: str) -> str:
     return f"{API_BASE_URL}{path}"
 
 
+def _is_render_backend() -> bool:
+    return "onrender.com" in API_BASE_URL
+
+
+def _backend_unreachable_message() -> str:
+    if _is_render_backend():
+        return (
+            f"Could not reach the backend at {API_BASE_URL}. If this Render free service is sleeping, "
+            "use `Refresh backend status` and give it about 30 to 60 seconds to wake."
+        )
+    return (
+        f"Could not reach the backend at {API_BASE_URL}. Start FastAPI with "
+        f"`python3 -m uvicorn main:app --host 127.0.0.1 --port 8000`."
+    )
+
+
 def _request_json(
     method: str,
     path: str,
@@ -679,11 +746,7 @@ def _request_json(
             timeout=API_TIMEOUT_SECONDS,
         )
     except requests.RequestException:
-        return (
-            None,
-            f"Could not reach the backend at {API_BASE_URL}. Start FastAPI with "
-            f"`python3 -m uvicorn main:app --host 127.0.0.1 --port 8000`.",
-        )
+        return None, _backend_unreachable_message()
 
     try:
         body = response.json()
@@ -707,6 +770,26 @@ def _fetch_health_status() -> Dict[str, Any]:
     if error:
         return {"available": False, "message": error}
     return {"available": True, "payload": payload}
+
+
+def _wake_backend_status() -> Dict[str, Any]:
+    attempts = 4 if _is_render_backend() else 1
+    wait_seconds = 5 if _is_render_backend() else 0
+    latest_error = _backend_unreachable_message()
+
+    for attempt in range(attempts):
+        payload, error = _request_json("GET", "/health")
+        if not error and payload:
+            _fetch_health_status.clear()
+            return {"available": True, "payload": payload}
+
+        if error:
+            latest_error = error
+
+        if attempt < attempts - 1:
+            time.sleep(wait_seconds)
+
+    return {"available": False, "message": latest_error}
 
 
 @st.cache_data(show_spinner=False)
@@ -1288,6 +1371,8 @@ def _render_header(health_status: Dict[str, Any], local_stats: Dict[str, int]) -
 
 
 def _render_sidebar(backend_available: bool) -> None:
+    status_class = "online" if backend_available else "offline"
+    status_text = "Online" if backend_available else "Sleeping or offline"
     st.sidebar.markdown("## Control Room")
     st.sidebar.markdown(
         f"""
@@ -1295,15 +1380,39 @@ def _render_sidebar(backend_available: bool) -> None:
           <div class="sidebar-label">Backend URL</div>
           <div class="sidebar-value"><code>{escape(API_BASE_URL)}</code></div>
           <div class="sidebar-label" style="margin-top:0.75rem;">Status</div>
-          <div class="sidebar-value">{'Online' if backend_available else 'Offline'}</div>
+          <div class="sidebar-status {status_class}">{escape(status_text)}</div>
+          <div class="sidebar-note">
+            {'Render free services may sleep when idle. Use the refresh button to wake the backend.' if _is_render_backend() else 'Use the refresh button after starting the local FastAPI backend.'}
+          </div>
         </div>
         """,
         unsafe_allow_html=True,
     )
 
     if st.sidebar.button("Refresh backend status", use_container_width=True):
+        with st.spinner("Checking backend status..."):
+            refreshed_status = _wake_backend_status()
+        if refreshed_status.get("available"):
+            st.session_state.backend_refresh_notice = "Backend is online and ready."
+            st.session_state.backend_refresh_notice_level = "success"
+        else:
+            st.session_state.backend_refresh_notice = refreshed_status.get(
+                "message",
+                "Backend is still unavailable. If this is Render free tier, wait a little longer and try again.",
+            )
+            st.session_state.backend_refresh_notice_level = "warning"
         _fetch_health_status.clear()
         st.rerun()
+
+    notice = clean_text(st.session_state.get("backend_refresh_notice"))
+    if notice:
+        level = clean_text(st.session_state.get("backend_refresh_notice_level")) or "info"
+        if level == "success":
+            st.sidebar.success(notice)
+        elif level == "warning":
+            st.sidebar.warning(notice)
+        else:
+            st.sidebar.info(notice)
 
     if st.sidebar.button("Clear conversation", use_container_width=True):
         st.session_state.chat_history = []
