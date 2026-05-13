@@ -191,6 +191,11 @@ SHOW_DEBUG_PAYLOADS = "false"
 
 - [abhisheksrivastava99/health-policy-navigator](https://github.com/abhisheksrivastava99/health-policy-navigator)
 
+## Live Deployment
+
+- Frontend: [citizen-health-policy-navigator.streamlit.app](https://citizen-health-policy-navigator.streamlit.app/)
+- Backend: [health-policy-navigator-backend.onrender.com](https://health-policy-navigator-backend.onrender.com/)
+
 ## Verification Checklist
 
 ### Local
