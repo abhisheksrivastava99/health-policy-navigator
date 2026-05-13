@@ -611,6 +611,47 @@ h1, h2, h3, h4 {
   color: var(--ink) !important;
 }
 
+.stSelectbox div[data-baseweb="select"] svg {
+  color: rgba(17, 35, 58, 0.72) !important;
+  fill: rgba(17, 35, 58, 0.72) !important;
+}
+
+[data-baseweb="popover"] [role="listbox"],
+div[data-baseweb="menu"] {
+  background: rgba(255,255,255,0.99) !important;
+  border: 1px solid rgba(17, 35, 58, 0.14) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 20px 40px rgba(17, 35, 58, 0.14) !important;
+  padding: 0.3rem !important;
+}
+
+[data-baseweb="popover"] [role="option"],
+div[data-baseweb="menu"] ul li,
+div[data-baseweb="menu"] li {
+  background: transparent !important;
+  color: var(--ink) !important;
+  border-radius: 12px !important;
+}
+
+[data-baseweb="popover"] [role="option"] *,
+div[data-baseweb="menu"] ul li *,
+div[data-baseweb="menu"] li * {
+  color: var(--ink) !important;
+}
+
+[data-baseweb="popover"] [role="option"][aria-selected="true"],
+div[data-baseweb="menu"] ul li[aria-selected="true"],
+div[data-baseweb="menu"] li[aria-selected="true"] {
+  background: rgba(28, 95, 130, 0.12) !important;
+}
+
+[data-baseweb="popover"] [role="option"]:hover,
+[data-baseweb="popover"] [role="option"][data-highlighted="true"],
+div[data-baseweb="menu"] ul li:hover,
+div[data-baseweb="menu"] li:hover {
+  background: rgba(28, 95, 130, 0.08) !important;
+}
+
 .stTextInput input::placeholder,
 .stTextArea textarea::placeholder {
   color: rgba(17, 35, 58, 0.58) !important;
