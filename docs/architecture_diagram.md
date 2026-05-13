@@ -1,52 +1,70 @@
 # Singapore Health Policy Navigator Architecture
 
+## Compact Report Diagram
+
 ```mermaid
-flowchart LR
-    User["User"] --> UI["Streamlit UI<br/>Chat + Premium Explorer + Benefit Explorer"]
-    UI --> Health["GET /health"]
-    UI --> Chat["POST /chat"]
-    UI --> Premium["POST /premium/quote"]
-    UI --> Benefit["POST /benefit/search"]
+flowchart TB
+    U["User"] --> F["Streamlit Frontend<br/>Chat | Premium Explorer | Benefit Explorer"]
 
-    subgraph API["FastAPI Service"]
-        Health --> Status["Startup + health validation"]
-        Chat --> Extract["LLM Call 1:<br/>Route + structured extraction"]
-        Extract --> Route{"Intent route"}
+    F --> C["POST /chat"]
+    F --> P["POST /premium/quote"]
+    F --> B["POST /benefit/search"]
+    F --> H["GET /health"]
 
-        Route --> PremiumTools["Deterministic premium path<br/>resolve_plan / lookup_cpf_limit / calculate_premium"]
-        Route --> BenefitTools["Deterministic benefit path<br/>resolve_plan / lookup_benefit"]
-        Route --> RecCheck{"Recommendation<br/>context complete?"}
-        Route --> Unsupported["Unsupported / missing-field response"]
+    subgraph API["FastAPI + LangGraph Backend"]
+        C --> R["LLM Router Agent<br/>intent + field extraction"]
+        R --> T["Deterministic Tool Layer<br/>plan resolution | CPF lookup | premium math | benefit search"]
+        T --> S["LLM Response Agent<br/>grounded synthesis only"]
 
-        RecCheck -->|No| RecIntake["LLM-guided recommendation intake<br/>collect age / budget / ward / coverage style"]
-        RecCheck -->|Yes| RecCandidates["Deterministic recommendation candidate builder<br/>premium rows / cash payable / heuristic scoring"]
-        RecCandidates --> RecReason["LLM recommendation reasoner<br/>top-3 shortlist explanation"]
-
-        PremiumTools --> Synthesize["LLM Call 2:<br/>Premium / benefit synthesis"]
-        BenefitTools --> Synthesize
-        RecIntake --> ChatResponse["Structured chat payload"]
-        RecReason --> ChatResponse
-        Unsupported --> ChatResponse
-        Synthesize --> ChatResponse
-
-        ChatResponse -.-> ChatState["conversation_state<br/>recommendation_context"]
-        ChatState -.-> Chat
-
-        Premium --> PremiumTools
-        Benefit --> BenefitTools
+        R --> Q["Recommendation Intake<br/>collect age + preferences"]
+        Q --> G["Recommendation Agent<br/>shortlist explanation"]
     end
 
-    PremiumTools --> Data["Master CSV data layer<br/>plan_catalog.csv<br/>benefits_master.csv<br/>premiums_master.csv<br/>cpf_limits_master.csv"]
-    BenefitTools --> Data
-    RecCandidates --> Data
+    T --> D["Master CSV Data<br/>plans | benefits | premiums | CPF limits"]
+    G --> D
 
-    Human["Human oversight<br/>query phrasing, citation review,<br/>architecture validation, governance review"] -.-> UI
-    Human -.-> API
-    Human -.-> Data
+    S --> F
+    P --> T
+    B --> T
+    H --> F
+
+    O["Human Oversight<br/>citation review | ambiguous cases | data validation"] -.-> F
+    O -.-> API
 ```
 
 ## Human-in-the-loop checkpoints
-- User reviews citations shown in chat and explorer tabs before relying on the answer.
-- User provides recommendation preferences during in-chat intake before the shortlist is produced.
-- Developer validates normalized data outputs, recommendation behavior, and smoke tests before submission.
-- Report writer documents governance, risks, and economic value assumptions outside the runtime flow.
+- User reviews citations before relying on an answer.
+- User provides recommendation preferences during chat intake.
+- Developer validates data normalization and smoke-test results before submission.
+
+## Deployment Diagram
+
+```mermaid
+flowchart TB
+    U["User Browser"] --> S["Streamlit Cloud Frontend"]
+    S --> R["Render Backend<br/>FastAPI + LangGraph"]
+    R --> O["OpenAI API"]
+    R --> D["Runtime CSV Data<br/>plans | benefits | premiums | CPF limits"]
+
+    S --> X["Chat UI<br/>Premium Explorer<br/>Benefit Explorer"]
+    R --> Y["/health | /chat | /premium/quote | /benefit/search"]
+```
+
+## High-Level Architecture Diagram
+
+```mermaid
+flowchart TB
+    U["Users"] --> I["Presentation Layer<br/>Streamlit"]
+    I --> A["Application Layer<br/>FastAPI + LangGraph"]
+    A --> T["Decision Layer<br/>LLM routing + deterministic tools"]
+    T --> D["Data Layer<br/>master CSV tables"]
+    A -.-> H["Human Oversight<br/>validation | citation review | governance"]
+```
+
+## Which one to use
+- `Compact Report Diagram`: best if you want to explain agent flow and recommendation handling.
+- `Deployment Diagram`: best if you want to show Streamlit, Render, and OpenAI clearly.
+- `High-Level Architecture Diagram`: best if you want a clean one-figure summary in the main report.
+
+## Report tip
+- For the smallest Word-friendly version, paste only the Mermaid diagram and omit the bullets below it.
