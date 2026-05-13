@@ -11,7 +11,7 @@ The app uses local normalized master tables for plan, premium, benefit, and CPF-
 
 - Frontend: [citizen-health-policy-navigator.streamlit.app](https://citizen-health-policy-navigator.streamlit.app/)
 - Backend: [health-policy-navigator-backend.onrender.com](https://health-policy-navigator-backend.onrender.com/)
-
+- Github: [https://github.com/abhisheksrivastava99/health-policy-navigator] (https://github.com/abhisheksrivastava99/health-policy-navigator/)
 ## What The App Does
 
 ### Chat
