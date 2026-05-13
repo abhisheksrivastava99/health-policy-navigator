@@ -9,6 +9,9 @@ It is designed to answer:
 
 The app uses local normalized master tables for plan, premium, benefit, and CPF-limit data, and uses OpenAI + LangGraph in the chat flow for routing, intake, and recommendation reasoning.
 
+- Frontend: [citizen-health-policy-navigator.streamlit.app](https://citizen-health-policy-navigator.streamlit.app/)
+- Backend: [health-policy-navigator-backend.onrender.com](https://health-policy-navigator-backend.onrender.com/)
+
 ## What The App Does
 
 ### Chat

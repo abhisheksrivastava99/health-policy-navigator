@@ -32,10 +32,6 @@ flowchart TB
     O -.-> API
 ```
 
-## Human-in-the-loop checkpoints
-- User reviews citations before relying on an answer.
-- User provides recommendation preferences during chat intake.
-- Developer validates data normalization and smoke-test results before submission.
 
 ## Deployment Diagram
 
@@ -66,5 +62,4 @@ flowchart TB
 - `Deployment Diagram`: best if you want to show Streamlit, Render, and OpenAI clearly.
 - `High-Level Architecture Diagram`: best if you want a clean one-figure summary in the main report.
 
-## Report tip
-- For the smallest Word-friendly version, paste only the Mermaid diagram and omit the bullets below it.
+
