@@ -131,7 +131,7 @@ def _load_csv(path: Path) -> pd.DataFrame:
     if not path.exists():
         raise FileNotFoundError(
             f"Required master table not found: {path}. "
-            "Run normalize_master_tables.py first."
+            "Run scripts/normalize_master_tables.py first."
         )
 
     dataframe = pd.read_csv(path)

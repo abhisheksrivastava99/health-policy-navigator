@@ -71,7 +71,7 @@ Benefit Explorer supports exact benefit lookups and full benefit schedule browsi
 
 ### Architecture Diagram
 
-- [architecture_diagram.md](./architecture_diagram.md)
+- [docs/architecture_diagram.md](./docs/architecture_diagram.md)
 
 ## Repository Structure
 
@@ -84,10 +84,18 @@ requirements.txt
 render.yaml
 .python-version
 .streamlit/secrets.toml.example
+docs/
+scripts/
 ip_plan_tables/master/
 tests/smoke/
-DEMO_QUESTIONS.md
 ```
+
+- `docs/`
+  - `DEMO_QUESTIONS.md`
+  - `architecture_diagram.md`
+  - `project_requirement.md`
+- `scripts/`
+  - data preparation and verification utilities
 
 ## Local Setup
 
@@ -224,7 +232,7 @@ Verify all of the following:
 
 See:
 
-- [DEMO_QUESTIONS.md](./DEMO_QUESTIONS.md)
+- [docs/DEMO_QUESTIONS.md](./docs/DEMO_QUESTIONS.md)
 
 Good quick demos:
 

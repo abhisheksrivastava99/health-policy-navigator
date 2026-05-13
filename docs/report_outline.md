@@ -7,7 +7,7 @@
 - Explain why an agentic AI approach is appropriate for routing user intent while keeping calculations deterministic.
 
 ## 2. Proposed Agentic System Architecture
-- Insert the Mermaid architecture diagram from [architecture_diagram.md](/Users/abhishek/Desktop/Assignments/FinTech%20A2/architecture_diagram.md:1).
+- Insert the Mermaid architecture diagram from [architecture_diagram.md](/Users/abhishek/Desktop/Assignments/FinTech%20A2/docs/architecture_diagram.md:1).
 - Describe the Streamlit UI, FastAPI backend, LangGraph flow, deterministic tool layer, and master CSV data layer.
 - Explain the 2-call LLM design:
   - Call 1: route + structured extraction
